@@ -1,8 +1,15 @@
 # Angular-MicroFrontend 🔥
 Micro Frontend Architecture in Angular 🔥
 
+<details>
+
+<summary><strong>Video Tutorials</strong></summary>
+
 [![Micro Frontend Architecture in Angular](https://github.com/piyalidas10/Angular-MicroFrontend/blob/a2afdf33df5fc49963147c2a6c4ae693c1304895/imgs/Micro_Frontend_Architecture.png)](https://youtu.be/TfXf0alqSRo?si=LmMACl4w7bCaS9YM)
 
+</details>
+
+ 
 <details>
 
 <summary><strong>Module Federation (Webpack-based) vs Native Federation (Angular Architects)</strong></summary>
