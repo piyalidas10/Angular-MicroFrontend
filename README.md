@@ -1,7 +1,7 @@
 # Angular-MicroFrontend 🔥
 Micro Frontend Architecture in Angular 🔥
 
-[![Micro Frontend Architecture in Angular](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/TfXf0alqSRo?si=LmMACl4w7bCaS9YM)
+[![Micro Frontend Architecture in Angular](https://github.com/piyalidas10/Angular-MicroFrontend/blob/a2afdf33df5fc49963147c2a6c4ae693c1304895/imgs/Micro_Frontend_Architecture.png)](https://youtu.be/TfXf0alqSRo?si=LmMACl4w7bCaS9YM)
 
 <details>
 
