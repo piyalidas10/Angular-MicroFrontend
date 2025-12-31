@@ -23,17 +23,20 @@ Micro Frontend Architecture in Angular 🔥
 ### 2️⃣ Core Architecture Difference
 **Webpack Module Federation**
 Shell (Webpack)
- ├─ remoteEntry.js (runtime container)
- ├─ Webpack share scope
+ ├─ remoteEntry.js (runtime container). Uses Webpack's plugin, creating remoteEntry.js files for hosts to load modules.
+ ├─ Webpack 5 feature for runtime code sharing
  ├─ Chunk loading via Webpack runtime
  └─ Angular bootstrapped after federation
 
 **Native Federation**
 Shell (ESM)
- ├─ import maps
+ ├─ Aims to be tooling/framework-agnostic, built on ESM and Import Maps.
+ ├─ Uses adapters for bundlers (esbuild, Vite), integrates deeply with Angular CLI for speed (SSR/Hydration).
  ├─ Native dynamic import()
  ├─ No bundler runtime
- └─ Angular bootstrapped normally
+ ├─ Angular bootstrapped normally
+ ├─ Pros: Faster builds (esbuild), simpler Angular setup, better SSR/hydration support, portable, reduces vendor lock-in.
+ └─ Cons: Relies on newer browser features (Import Maps), less mature ecosystem than Webpack MF. 
 
 **👉 Key difference**
   -  Webpack MF injects a runtime container.
