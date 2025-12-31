@@ -1,6 +1,8 @@
 # Angular-MicroFrontend 🔥
 Micro Frontend Architecture in Angular 🔥
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TfXf0alqSRo?si=TJ-4QEpn0riHCdRW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <details>
 
 <summary><strong>Module Federation (Webpack-based) vs Native Federation (Angular Architects)</strong></summary>
