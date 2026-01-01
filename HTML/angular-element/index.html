@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Angular Element Test</title>
+  </head>
+
+  <body>
+    <!-- Your Angular Element -->
+    <user-card user-id="1"></user-card>
+    <user-card user-id="2"></user-card>
+    <user-card user-id="3"></user-card>
+    <user-card id="card"></user-card>
+    <product-tile product-id="77"></product-tile>
+    <notification-bell></notification-bell>
+
+    <!-- Load Angular Element bundle -->
+    <!-- <script src="../../angular-elements-widget/dist/widget/runtime.js"></script>
+    <script src="../../angular-elements-widget/dist/widget/polyfills.js"></script>
+    <script src="../../angular-elements-widget/dist/widget/main.js"></script> -->
+     <!-- 🔴 REQUIRED SCRIPTS (ORDER MATTERS) -->
+    <script src="./widget/runtime.js"></script>
+    <script src="./widget/polyfills.js"></script>
+    <script src="./widget/main.js"></script>
+    <script>
+        const card = document.getElementById('card');
+
+        card.addEventListener('selected', (e) => {
+            console.log('Selected user:', e.detail);
+        });
+    </script>
+  </body>
+</html>
