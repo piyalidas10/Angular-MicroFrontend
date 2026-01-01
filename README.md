@@ -3,15 +3,6 @@ Micro Frontend Architecture in Angular 🔥
 
 <details>
 
-<summary><strong>Video Tutorials</strong></summary>
-
-[![Micro Frontend Architecture in Angular](https://github.com/piyalidas10/Angular-MicroFrontend/blob/a2afdf33df5fc49963147c2a6c4ae693c1304895/imgs/Micro_Frontend_Architecture.png)](https://youtu.be/TfXf0alqSRo?si=LmMACl4w7bCaS9YM)
-
-</details>
-
- 
-<details>
-
 <summary><strong>Module Federation (Webpack-based) vs Native Federation (Angular Architects)</strong></summary>
 
 ### 1️⃣ What They Are (One-line Definition)
@@ -208,6 +199,66 @@ No Angular Router, no NgModules required.
 | Independent deployment  | ✅                | ✅              |
 | Lightweight UI widgets  | ⚠️               | ❌               |
 
+### Can directly run angular elements in browser with html file ?
+👉 Yes, you can run Angular Elements directly in the browser with a plain HTML file — but only if the Angular Elements JavaScript bundle is served via HTTP/HTTPS, not by opening the HTML file directly. Angular Elements can be run directly in a browser using a plain HTML file, provided the compiled JavaScript bundle is served over HTTP/HTTPS. Opening the file via file:// is not supported.
 
+**Opening the HTML file directly in the browser will fail because:**
+ - ES modules are blocked
+ - Custom Elements lifecycle breaks
+ - Angular runtime expects HTTP context
+
+**🧠 Why a Server Is Mandatory**
+Angular Elements bundles:
+ - ES modules
+ - dynamic imports
+ - Web Component registration
+Browsers restrict these features for file:// URLs for security reasons.
+This is not Angular-specific — same rule applies to React/Vue builds.
+[]
+
+### Run Angular Elements
+Angular Elements are not applications. They are browser-native custom elements that execute when their JS bundle is loaded. 
+**To run Angular Elements, think in two phases:**
+ - 1️⃣ Build the Angular Elements bundle using ng build or npm run build -> will create dist folder with inside another another folder with main.js, index.html, polyfills.js (if polyfills exits), 3rdpartylicenses.txt
+ - 2️⃣ To Run with static nodejs server, create a seperate folder like HTML. create a index.html file and include angular elements with main.js script includes.
+ - 3️⃣ inside HTML folder, run "npx serve ." command
+
+**After build, you should have:**
+```
+dist/widget/
+├── polyfills.js (if present)
+├── runtime.js
+├── 3rdpartylicenses.txt
+└── main.js   ✅ (this is all you need)
+```
+**⚠️ Script order is critical**
+ - runtime.js
+ - polyfills.js
+ - main.js
+![Angular Elements Coding](https://github.com/piyalidas10/Angular-MicroFrontend/blob/cbcb20dc5387fca38a408600ca4dd5cf59b350f5/imgs/angular_elements_coding.png)
+**Run "npx serve ." in gitbash / terminal**
+```
+┌───────────────────────────────────────────┐
+│                                           │
+│   Serving!                                │
+│                                           │
+│   - Local:    http://localhost:3000       │
+│   - Network:  http://192.168.0.125:3000   │
+│                                           │
+│   Copied local address to clipboard!      │
+│                                           │
+└───────────────────────────────────────
+```
+Check in browser using "http://localhost:3000"
+![Angular Elements Run](https://github.com/piyalidas10/Angular-MicroFrontend/blob/cbcb20dc5387fca38a408600ca4dd5cf59b350f5/imgs/angular_elements_run.png)
+
+
+</details>
+
+<details>
+
+<summary><strong>Video Tutorials</strong></summary>
+
+[![Micro Frontend Architecture in Angular](https://github.com/piyalidas10/Angular-MicroFrontend/blob/a2afdf33df5fc49963147c2a6c4ae693c1304895/imgs/Micro_Frontend_Architecture.png)](https://youtu.be/TfXf0alqSRo?si=LmMACl4w7bCaS9YM)
 
 </details>
