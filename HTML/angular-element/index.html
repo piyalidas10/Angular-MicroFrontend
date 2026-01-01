@@ -7,10 +7,9 @@
 
   <body>
     <!-- Your Angular Element -->
-    <user-card user-id="1"></user-card>
+    <user-card id="u1" user-id="1"></user-card>
     <user-card user-id="2"></user-card>
     <user-card user-id="3"></user-card>
-    <user-card id="card"></user-card>
     <product-tile product-id="77"></product-tile>
     <notification-bell></notification-bell>
 
@@ -23,11 +22,23 @@
     <script src="./widget/polyfills.js"></script>
     <script src="./widget/main.js"></script>
     <script>
-        const card = document.getElementById('card');
+      window.addEventListener('DOMContentLoaded', () => {
+        const card = document.getElementById('u1');
 
-        card.addEventListener('selected', (e) => {
-            console.log('Selected user:', e.detail);
+        if (!card) {
+          console.error('user-card not found');
+          return;
+        }
+
+        card.addEventListener('user-selected', (e) => {
+          console.log('User selected from widget:', e.detail.userId);
         });
+      });
+
+      window.addEventListener('user-selected', (e) => {
+        console.log('Any user-card selected:', e.detail);
+      });
     </script>
+
   </body>
 </html>

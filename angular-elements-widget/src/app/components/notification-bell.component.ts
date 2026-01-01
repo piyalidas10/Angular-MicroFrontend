@@ -1,10 +1,29 @@
-import { Component, signal } from "@angular/core";
+import { Component, effect, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { EventBusService } from '../shared/event-bus.service';
 
 @Component({
-  standalone: true,
   selector: 'notification-bell',
-  template: `🔔 {{ count() }}`,
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="bell">
+      🔔 Notifications: {{ count }}
+    </div>
+  `,
 })
 export class NotificationBellComponent {
-  count = signal(3);
+  count = 0;
+  private bus = inject(EventBusService);
+
+  constructor() {
+    effect(() => {
+      const event = this.bus.events();
+      if (!event) return;
+
+      if (event.type === 'USER_SELECTED') {
+        this.count++;
+      }
+    });
+  }
 }

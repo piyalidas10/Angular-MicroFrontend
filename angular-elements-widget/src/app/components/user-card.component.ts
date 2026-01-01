@@ -1,20 +1,13 @@
+import { Component, Input, inject, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  signal,
-  ViewEncapsulation
-} from '@angular/core';
+import { EventBusService } from '../shared/event-bus.service';
 
 @Component({
+  selector: 'user-card',
   standalone: true,
   imports: [CommonModule],
-  selector: 'user-card',
-  encapsulation: ViewEncapsulation.ShadowDom,
   template: `
-    <style>
+  <style>
       .card {
         border: 1px solid #ccc;
         padding: 12px;
@@ -27,19 +20,46 @@ import {
     </style>
 
     <div class="card">
-      <h3>{{ name() }}</h3>
-      <p>User ID: {{ userId }}</p>
-      <button (click)="notify()">Notify</button>
+      <h3>User {{ userId }}</h3>
+      <button (click)="select()">Select</button>
     </div>
-  `
+  `,
 })
 export class UserCardComponent {
-  @Input() userId!: number;
-  @Output() selected = new EventEmitter<number>();
+  @Input() userId!: string;
 
-  name = signal('Angular 19 Element');
+  private bus = inject(EventBusService);
+  private el = inject(ElementRef<HTMLElement>);
 
-  notify() {
-    this.selected.emit(this.userId);
+  select() {
+    const payload = { userId: this.userId };
+
+    // 🔁 Angular ↔ Angular (cross-widget)
+    this.bus.emit({
+      type: 'USER_SELECTED',
+      payload,
+    });
+
+    // 🌍 Angular → Host (DOM event)
+    this.el.nativeElement.dispatchEvent(
+      new CustomEvent('user-selected', {
+        detail: payload,
+        bubbles: true,
+        composed: true, // 🔴 CRITICAL for Angular Elements
+      })
+    );
   }
 }
+
+/**
+ * 🔴 Why bubbles + composed Matter
+ | Option           | Why                       |
+| ---------------- | ------------------------- |
+| `bubbles: true`  | Event travels up DOM      |
+| `composed: true` | Escapes Shadow DOM        |
+| Without these    | Host NEVER receives event |
+
+ * Without composed: true:
+    card.addEventListener ❌
+    window.addEventListener ❌
+ */
