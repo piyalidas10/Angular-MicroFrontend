@@ -11,6 +11,19 @@ Micro Frontend Architecture in Angular 🔥
 | **Module Federation (Webpack)**            | Webpack’s runtime system for loading remote JS bundles at runtime                          |
 | **Native Federation (Angular Architects)** | Angular-first federation that uses **native ES modules + import maps**, no Webpack runtime |
 
+**✅ Choose Webpack Module Federation if:**
+ - Legacy Angular (≤13)
+ - Already deep into Webpack MF
+ - Heavy non-Angular remotes
+ - Need Webpack-only plugins
+
+**✅ Choose Native Federation if:**
+ - Angular 16+ (especially 17–19)
+ - Standalone + signals
+ - SSR / hydration
+ - Long-term maintainability
+ - Faster builds & simpler debugging Angular team direction strongly favors this approach.
+
 ### 2️⃣ Core Architecture Difference
 ```
 **Webpack Module Federation**
